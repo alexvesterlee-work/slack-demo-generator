@@ -1,0 +1,37 @@
+{
+  "app": "Gong",
+  "fake_bot_id": "Gong",
+  "notes": "Gong for Slack notifications: call-recap cards (AI brief + highlights + next steps) and tracker/keyword alerts when a topic is mentioned on a customer call. Card = section with linked call title + attendees/duration fields + a highlights/quote section + context footer + a 'View call' URL button. Fits deal, account, and product/dev channels (feature requests surfacing from customer calls).",
+  "examples": [
+    {
+      "name": "call_recap",
+      "when": "A customer call has been recorded and Gong's AI recap is ready.",
+      "blocks": [
+        { "type": "section", "text": { "type": "mrkdwn", "text": ":telephone_receiver:  *Call recap ready*\n*<https://app.gong.io/call?id=7431902281|Acme Corp — Technical Deep Dive>*" } },
+        { "type": "section", "fields": [
+          { "type": "mrkdwn", "text": "*Account:*\nAcme Corp" },
+          { "type": "mrkdwn", "text": "*Duration:*\n46 min" },
+          { "type": "mrkdwn", "text": "*Internal:*\nFrank Reynolds, Dee Reynolds" },
+          { "type": "mrkdwn", "text": "*External:*\nCharlie Kelly (VP Engineering)" }
+        ] },
+        { "type": "section", "text": { "type": "mrkdwn", "text": "*Brief:* Customer validated the core use case and asked for SSO + audit logging before procurement.\n*Next steps:*\n• Send security questionnaire (Frank, Fri)\n• Schedule pilot kickoff" } },
+        { "type": "context", "elements": [ { "type": "mrkdwn", "text": "Talk ratio 42% · 3 questions asked by customer · Recorded today" } ] },
+        { "type": "actions", "elements": [
+          { "type": "button", "text": { "type": "plain_text", "text": "View call", "emoji": true }, "url": "https://app.gong.io/call?id=7431902281", "action_id": "gong_view_call" }
+        ] }
+      ]
+    },
+    {
+      "name": "tracker_alert",
+      "when": "A Gong smart tracker fires (competitor, feature request, pricing) on a customer call.",
+      "blocks": [
+        { "type": "section", "text": { "type": "mrkdwn", "text": ":mag:  *Tracker mentioned: Feature Request*\n*<https://app.gong.io/call?id=7431902299|Acme Corp — Weekly Sync>*" } },
+        { "type": "section", "text": { "type": "mrkdwn", "text": "> _\"If you had native SSO we could roll this out to every team next quarter.\"_\n— Charlie Kelly, Acme Corp · 18:42" } },
+        { "type": "context", "elements": [ { "type": "mrkdwn", "text": "Tracker: Feature Request · Owner: Frank Reynolds · 2 mentions on this call" } ] },
+        { "type": "actions", "elements": [
+          { "type": "button", "text": { "type": "plain_text", "text": "Listen to moment", "emoji": true }, "url": "https://app.gong.io/call?id=7431902299", "action_id": "gong_listen" }
+        ] }
+      ]
+    }
+  ]
+}
