@@ -1,0 +1,41 @@
+{
+  "app": "Microsoft Teams",
+  "fake_bot_id": "Microsoft Teams Calls",
+  "notes": "Microsoft Teams meeting notifications for Slack (the 'Microsoft Teams Calls' app): upcoming meeting cards with a Join button, and meeting-recap cards (recording + transcript + Copilot notes). Fits any channel where the org meets in Teams.",
+  "examples": [
+    {
+      "name": "meeting_scheduled",
+      "when": "A Teams meeting is scheduled — invite card with Join button.",
+      "blocks": [
+        { "type": "section", "text": { "type": "mrkdwn", "text": ":calendar:  *Microsoft Teams meeting*\n*Acme Corp — Sprint Review*" } },
+        { "type": "section", "fields": [
+          { "type": "mrkdwn", "text": "*When:*\nThu · 10:00–10:45 AM PT" },
+          { "type": "mrkdwn", "text": "*Organizer:*\nFrank Reynolds" },
+          { "type": "mrkdwn", "text": "*Meeting ID:*\n241 883 905 17" },
+          { "type": "mrkdwn", "text": "*Passcode:*\nqT7xP2" }
+        ] },
+        { "type": "actions", "elements": [
+          { "type": "button", "text": { "type": "plain_text", "text": "Join meeting", "emoji": true }, "style": "primary", "url": "https://teams.microsoft.com/l/meetup-join/24188390517", "action_id": "teams_join" }
+        ] }
+      ]
+    },
+    {
+      "name": "meeting_recap",
+      "when": "A Teams meeting ended — recording, transcript and Copilot recap available.",
+      "blocks": [
+        { "type": "section", "text": { "type": "mrkdwn", "text": ":clapper:  *Meeting recap available*\n*<https://teams.microsoft.com/l/meetingrecap/24188390517|Acme Corp — Sprint Review>*" } },
+        { "type": "section", "fields": [
+          { "type": "mrkdwn", "text": "*Organizer:*\nFrank Reynolds" },
+          { "type": "mrkdwn", "text": "*Duration:*\n43 min" },
+          { "type": "mrkdwn", "text": "*Attendees:*\n9" },
+          { "type": "mrkdwn", "text": "*Recording:*\nSaved to OneDrive" }
+        ] },
+        { "type": "section", "text": { "type": "mrkdwn", "text": "*Copilot notes:*\n• Demo of the new export flow approved\n• Two follow-ups assigned" } },
+        { "type": "context", "elements": [ { "type": "mrkdwn", "text": "Transcript and recording available in Microsoft Teams" } ] },
+        { "type": "actions", "elements": [
+          { "type": "button", "text": { "type": "plain_text", "text": "View recap", "emoji": true }, "url": "https://teams.microsoft.com/l/meetingrecap/24188390517", "action_id": "teams_recap" }
+        ] }
+      ]
+    }
+  ]
+}
