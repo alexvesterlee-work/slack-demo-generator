@@ -1,0 +1,39 @@
+{
+  "app": "Zendesk",
+  "fake_bot_id": "Zendesk",
+  "notes": "Zendesk for Slack ticket notifications. Card = section with linked ticket title (#id + subject) + fields (Status/Priority/Requester/Assignee) + optional latest-comment quote + context footer (org, channel, SLA) + 'View ticket' URL button. Fits support, escalation, and dev channels where customer-reported bugs land.",
+  "examples": [
+    {
+      "name": "ticket_escalated",
+      "when": "A ticket is escalated to engineering / tier 3.",
+      "blocks": [
+        { "type": "section", "text": { "type": "mrkdwn", "text": ":rotating_light:  *Ticket escalated to Engineering*\n*<https://support.zendesk.com/agent/tickets/48213|#48213 · Exports failing for large workspaces>*" } },
+        { "type": "section", "fields": [
+          { "type": "mrkdwn", "text": "*Status:*\nOpen" },
+          { "type": "mrkdwn", "text": "*Priority:*\nUrgent" },
+          { "type": "mrkdwn", "text": "*Requester:*\nCharlie Kelly (Acme Corp)" },
+          { "type": "mrkdwn", "text": "*Assignee:*\nTier 3 · Engineering" }
+        ] },
+        { "type": "section", "text": { "type": "mrkdwn", "text": "> Exports over 2GB time out after 30 minutes. Started after Tuesday's update." } },
+        { "type": "context", "elements": [ { "type": "mrkdwn", "text": "Org: Acme Corp · Channel: Web form · SLA next reply in 45m" } ] },
+        { "type": "actions", "elements": [
+          { "type": "button", "text": { "type": "plain_text", "text": "View ticket", "emoji": true }, "url": "https://support.zendesk.com/agent/tickets/48213", "action_id": "zendesk_view" }
+        ] }
+      ]
+    },
+    {
+      "name": "ticket_solved",
+      "when": "A ticket is marked solved.",
+      "blocks": [
+        { "type": "section", "text": { "type": "mrkdwn", "text": ":white_check_mark:  *Ticket solved*\n*<https://support.zendesk.com/agent/tickets/48213|#48213 · Exports failing for large workspaces>*" } },
+        { "type": "section", "fields": [
+          { "type": "mrkdwn", "text": "*Status:*\nSolved" },
+          { "type": "mrkdwn", "text": "*Time to resolve:*\n1d 4h" },
+          { "type": "mrkdwn", "text": "*Requester:*\nCharlie Kelly (Acme Corp)" },
+          { "type": "mrkdwn", "text": "*CSAT:*\n:star: Good" }
+        ] },
+        { "type": "context", "elements": [ { "type": "mrkdwn", "text": "Solved by Jennifer Hynes · linked Jira issue resolved" } ] }
+      ]
+    }
+  ]
+}
