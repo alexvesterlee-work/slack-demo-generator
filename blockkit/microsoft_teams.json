@@ -1,7 +1,7 @@
 {
   "app": "Microsoft Teams",
-  "fake_bot_id": "Microsoft Teams Calls",
-  "notes": "Microsoft Teams meeting notifications for Slack (the 'Microsoft Teams Calls' app): upcoming meeting cards with a Join button, and meeting-recap cards (recording + transcript + Copilot notes). Fits any channel where the org meets in Teams.",
+  "fake_bot_id": "Microsoft Teams",
+  "notes": "Microsoft Teams meeting notifications for Slack : upcoming meeting cards with a Join button, and meeting-recap cards (recording + transcript + Copilot notes). Fits any channel where the org meets in Teams.",
   "examples": [
     {
       "name": "meeting_scheduled",
